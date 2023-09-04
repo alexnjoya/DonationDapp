@@ -1,115 +1,51 @@
-# Hardhat-Crash-Course
+Build a smart contract to facilitate and manage donations in MATIC on the Polygon network. This contract will allow donors to make contributions in MATIC to a specific cause or organization. It will also provide transparency and accountability in tracking and managing donated funds.
 
-This hardhat template comes with some setup scripts, tasks and an example docker compose service to get contract development into your app quickly.
+Functional Requirements
 
-The idea is that it can be dropped into any frontend project using docker compose easily. Allowing you to quickly iterate on contract development and integration with your frontend.
 
-## Getting started
+DONATIONS
 
-Clone the repo into your project directory:
+1. Donate MATIC
+Users must be able to send MATIC to the smart contract's address to make a donation.
+Donations can be of any value in MATIC.
+Donors should be able to specify an optional message or purpose for their donation.
+2. Track Donations
+The contract must keep a record of all donations, including the donor's address, amount in MATIC, and timestamp.
+Each donation should be associated with a unique donation ID or transaction hash.
+3. View Total Donations
+Users should be able to query the total amount of MATIC donated.
+4. View Donor List
+The contract should maintain a list of donors' addresses.
+Users should be able to retrieve the list of donors.
+WITHDRAW FUNDS
+1. Withdraw to Beneficiary
+There should be a designated beneficiary address.
+The beneficiary can initiate a withdrawal request to transfer donated MATIC funds to their address.
+ADMINISTRATIVE FUNCTIONS
+1. Set Beneficiary
+The contract owner/administrator should be able to set or change the beneficiary's address.
+2. Emergency Stop
+There should be a mechanism for the contract owner/administrator to pause or halt all contract operations in case of emergencies or vulnerabilities.
+SECURITY REQUIREMENTS
+1. Access Control
+Access to administrative functions should be restricted to the contract owner/administrator.
+Donors should not have the ability to modify contract parameters or withdraw funds.
+2. Fund Safety
+Donated MATIC funds should be stored securely and be accessible only to the beneficiary.
+3. Emergency Measures
+The contract should have a fail-safe mechanism to allow pausing or halting of operations in case of security breaches or vulnerabilities.
+COMPLIANCE REQUIREMENTS
+1. Transparency
+The contract should provide a publicly accessible interface to view donation records, total donations in MATIC, and the list of donors.
+GAS EFFICIENCY (Optional)
+1. Gas Optimization
+The contract should be designed to minimize gas costs for both donors and the beneficiary when interacting with the contract.
 
-```bash
-git clone https://github.com/abhishekpatel946/Hardhat-Crash-Course.git hardhat
-```
+TESTING AND DEPLOYMENT
+1. Testing
+Comprehensive testing, including unit tests and integration tests, should be conducted on the smart contract code.
+2. Deployment
+The smart contract must be deployed on the Polygon test network (Mumbai).
 
-Deployed Token Address:
-
-- TestToken
-```bash
-0x973Dc12Bd0496A4063A2b81EcE6A0979Ceb08e54
-```
-- CrowdFunding
-```bash
-0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
-- SimpleAuction
-```bash
-0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
-Etherscan Contract Creation Hash:
-- TestToken
-```bash
-https://ropsten.etherscan.io/tx/0x22efa4f6f758432fc1a4dd759f495fed4fbc73792e7f4f0b99204b542be591bf
-```
-- CrowdFunding
-```bash
-https://ropsten.etherscan.io/tx/0xbaface72ab0d9b896f25b6471977210e46ff7ac0e136e7a4d8e3d88208eaf010
-```
-- SimpleAuction
-```bash
-https://ropsten.etherscan.io/address/0x797c09A52D0Fb5412C207FF4D07E525d10692877
-```
-
-## Getting started with Hardhat
-
-Install all the dependencies
-```bash
-npm i
-```
-
-Run the test for all contracts
-```bash
-npx hardhat test
-```
-
-Deploy the contract in locally using hardhat network
-```bash
-npx hardhat run scripts/deploy.js
-```
-
-Note: Change the `scripts/deploy.js` and run the below command to deploy the specific contract.
-
-Deploy the contract in testnet like: ropsten
-```bash
-npx hardhat run scripts/deploy.js --network ropsten
-```
-
-## References
-
-- [Hardhat](https://hardhat.org/getting-started)
-- [Waffle](https://ethereum-waffle.readthedocs.io/en/latest/index.html)
-- [Chai](https://www.chaijs.com/guide/styles/#expect)
-- [Alchemy](https://dashboard.alchemyapi.io/)
-
-Add the following service to your `docker-compose.yml`:
-
-```yaml
-hardhat:
-  build:
-    context: ./hardhat
-    dockerfile: Dockerfile.dev
-  restart: always
-  command: yarn run dev
-  volumes: 
-    - ./hardhat:/app
-    - /app/node_modules
-    - ./<PATH_TO_FRONTEND_DIR>/contracts:/app/tmp/contracts
-  ports:
-    - 8545:8545
-```
-
-Once the service has been started with `docker-compose up` you contracts will be deployed to the localhost:8545 RPC. When you save the contract files they will be redeployed.
-
-When contracts are compiled and deployed the output files are saved to `/deployments/<network>` in the hardhat container. Mounting this folder to a volume in the service as we did above with `- ./<PATH_TO_FRONTEND_DIR>/contracts:/app/deployments` means that these contracts will then be available in your frontend directory under `/contracts`.
-
-## Deployment
-
-First add your credentials to the `.env.example` file and rename to `.env`.
-
-To deploy to networks other than localhost you can run commands like:
-
-```bash
-docker-compose run hardhat mainnet:deploy
-```
-
-For a full list of deployment commands for different networks see [package.json](/package.json).
-
-## Tasks
-
-There are a default tasks for interacting with the localhost network when it's up and running. 
-
-```bash
-docker-compose exec hardhat accounts # fetch list of default network accounts
-docker-compose exec hardhat balance <address> # Get balance for an address
-docker-compose exec hardhat send --from <address> --to <address> --amount 10 # Send ETH from one address to another
-docker-compose exec hardhat blockNumber # Get the current blocknumber
+SUBMISSION
+Please submit the link to your repo on GitHub.
